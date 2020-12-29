@@ -5,7 +5,7 @@
   "repository": "git@github.com/kirino17/debugger-protocol-viewer.git",
   "author": "Google Inc.",
   "license": "Apache2",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "@11ty/eleventy": "0.10.0",
     "@rollup/plugin-node-resolve": "7.1.1",
