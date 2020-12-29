@@ -1,6 +1,5 @@
 name: 😎
 on:
-  pull_request:
   push:
     branches:    
       - master
@@ -22,13 +21,9 @@ jobs:
       - name: build
         run: npm i && npm run build
 
-      - name: install lhci
-        run: npm install @lhci/cli@latest
-        
-      - name: run lhci
+      - name: Publish
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
-          npx lhci autorun \
-            --collect.url=http://localhost:8696/devtools-protocol/ \
-            --collect.url=http://localhost:8696/devtools-protocol/tot/Page/ \
-            --upload.token=${{ secrets.LHCI_SERVER_TOKEN }} \
-            --upload.serverBaseUrl=https://lhci-canary.herokuapp.com/
+          npm config set '//registry.npmjs.org/:_authToken' '${NPM_TOKEN}'
+          npm publish
